@@ -1,0 +1,23 @@
+version: "3"
+tasks:
+    generate:
+        cmds:
+            - php bin/jane-open-api-generate
+        desc: generate API client
+    format:
+        cmds:
+            - php php-cs-fixer-v2.phar fix --config=.php_cs.dist.php
+        desc: format code
+    serve:
+        cmds:
+            - cd public && php -S 127.0.0.1:8888
+        desc: run dev server
+    mock:
+        cmds:
+            - node --experimental-worker `which prism` mock api.yaml
+        desc: run API mock
+    lint:
+        cmds:
+            - lint-openapi api.yaml
+        desc: lint API manifest
+
